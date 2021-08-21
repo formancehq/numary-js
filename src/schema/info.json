@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "required": [
+    "server",
+    "version",
+    "config",
+    "ledgers"
+  ],
+  "properties": {
+    "server": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "config": {
+      "patternProperties": {
+        ".*": {
+          "additionalProperties": true
+        }
+      },
+      "type": "object"
+    },
+    "ledgers": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    }
+  },
+  "additionalProperties": false,
+  "type": "object",
+  "title": "Info"
+}

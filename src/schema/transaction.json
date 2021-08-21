@@ -1,0 +1,72 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "required": [
+    "txid",
+    "postings",
+    "reference",
+    "timestamp",
+    "hash",
+    "metadata"
+  ],
+  "properties": {
+    "txid": {
+      "type": "integer"
+    },
+    "postings": {
+      "items": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "$ref": "#/definitions/Posting"
+      },
+      "type": "array"
+    },
+    "reference": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string"
+    },
+    "hash": {
+      "type": "string"
+    },
+    "metadata": {
+      "patternProperties": {
+        ".*": {
+          "type": "string",
+          "media": {
+            "binaryEncoding": "base64"
+          }
+        }
+      },
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "type": "object",
+  "title": "Transaction",
+  "definitions": {
+    "Posting": {
+      "required": [
+        "source",
+        "destination",
+        "amount",
+        "asset"
+      ],
+      "properties": {
+        "source": {
+          "type": "string"
+        },
+        "destination": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "integer"
+        },
+        "asset": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "numary",
+  "version": "1.0.0-alpha.1",
+  "main": "dist/main.js",
+  "types": "dist/main.d.ts",
+  "repository": "git@github.com:numary/numary-js.git",
+  "author": "Clément Salaün <salaun.clement@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "json-schema-to-typescript": "^10.1.4"
+  },
+  "scripts": {
+    "build": "tsc"
+  }
+}
