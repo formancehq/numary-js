@@ -28,6 +28,16 @@ class Ledger {
     return res.data;
   }
 
+  async setTransactionMeta(txid: string, meta: object) {
+    const res = await this.cluster.conn.post(`/${this.name}/transactions/${txid}/metadata`, meta);
+    return res.data;
+  }
+
+  async setAccountMeta(address: string, meta: object) {
+    const res = await this.cluster.conn.post(`/${this.name}/accounts/${address}/metadata`, meta);
+    return res.data;
+  }
+
   async execute(script: string, vars: object) : Promise<any> {
     const res = await this.cluster.conn.post(`/${this.name}/script`, {
       plain: script,
