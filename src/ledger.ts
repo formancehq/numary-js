@@ -23,6 +23,11 @@ class Ledger {
     return res.data;
   }
 
+  async getTransaction(txid: string) : Promise<Transaction> {
+    const res = await this.cluster.conn.get(`/${this.name}/transactions/${txid}`);
+    return res.data;
+  }
+
   async getTransactions(query?: TransactionQuery) : Promise<Cursor<Transaction>> {
     const res = await this.cluster.conn.get(`/${this.name}/transactions`);
     return res.data;

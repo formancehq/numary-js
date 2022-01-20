@@ -4,5 +4,10 @@ function numary() : Cluster {
   return new Cluster({});
 }
 
-// export default numary;
-export = numary;
+// export default Cluster;
+export = Cluster;
+
+exports = {
+  numary,
+  Cluster,
+}
