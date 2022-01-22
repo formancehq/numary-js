@@ -32,7 +32,7 @@ const ledger = cluster.getLedger('some-ledger');
 
 Axios interceptors can be used on the underlying cluster connection, e.g. to add authentication headers:
 
-```
+```typescript
 const cluster = new Cluster({
   uri: 'http://example.com:3068',
 });
