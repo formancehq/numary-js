@@ -15,7 +15,7 @@ class Ledger {
 
   async getAccounts() : Promise<Cursor<Account>> {
     const res = await this.cluster.conn.get(`/${this.name}/accounts`);
-    return res.data;
+    return res.data.cursor;
   }
 
   async getAccount(address: string) : Promise<Account> {
@@ -29,8 +29,11 @@ class Ledger {
   }
 
   async getTransactions(query?: TransactionQuery) : Promise<Cursor<Transaction>> {
-    const res = await this.cluster.conn.get(`/${this.name}/transactions`);
-    return res.data;
+    const res = await this.cluster.conn.get(`/${this.name}/transactions`, {
+      params: query,
+    });
+
+    return res.data.cursor;
   }
 
   async setTransactionMeta(txid: string, meta: object) {
