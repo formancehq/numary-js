@@ -1,6 +1,6 @@
 {
   "name": "numary",
-  "version": "1.0.0-rc.4",
+  "version": "1.0.0-rc.5",
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
   "files": [

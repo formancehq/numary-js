@@ -5,7 +5,7 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-export interface Account {
+export interface AccountSummary {
   address: string;
   contract: string;
   type?: string;
@@ -17,6 +17,39 @@ export interface Account {
     [k: string]: number;
   };
   volumes?: {
+    /**
+     * This interface was referenced by `undefined`'s JSON-Schema definition
+     * via the `patternProperty` ".*".
+     */
+    [k: string]: {
+      /**
+       * This interface was referenced by `undefined`'s JSON-Schema definition
+       * via the `patternProperty` ".*".
+       */
+      [k: string]: number;
+    };
+  };
+  metadata: {
+    /**
+     * This interface was referenced by `undefined`'s JSON-Schema definition
+     * via the `patternProperty` ".*".
+     */
+    [k: string]: string;
+  };
+}
+
+export interface Account {
+  address: string;
+  contract: string;
+  type?: string;
+  balances: {
+    /**
+     * This interface was referenced by `undefined`'s JSON-Schema definition
+     * via the `patternProperty` ".*".
+     */
+    [k: string]: number;
+  };
+  volumes: {
     /**
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` ".*".

@@ -1,7 +1,7 @@
-import { Account } from "./account";
+import { Account, AccountSummary } from "./account";
 import Cluster from "./cluster";
 import Cursor from "./cursor";
-import { Transaction } from "./schema";
+import { Transaction, TransactionRequest } from "./schema";
 import { TransactionQuery } from './query';
 
 class Ledger {
@@ -13,19 +13,19 @@ class Ledger {
     this.cluster = cluster;
   }
 
-  async getAccounts() : Promise<Cursor<Account>> {
+  async getAccounts() : Promise<Cursor<AccountSummary>> {
     const res = await this.cluster.conn.get(`/${this.name}/accounts`);
     return res.data.cursor;
   }
 
   async getAccount(address: string) : Promise<Account> {
     const res = await this.cluster.conn.get(`/${this.name}/accounts/${address}`);
-    return res.data;
+    return res.data.data;
   }
 
   async getTransaction(txid: string) : Promise<Transaction> {
     const res = await this.cluster.conn.get(`/${this.name}/transactions/${txid}`);
-    return res.data;
+    return res.data.data;
   }
 
   async getTransactions(query?: TransactionQuery) : Promise<Cursor<Transaction>> {
@@ -46,7 +46,7 @@ class Ledger {
     return res.data;
   }
 
-  async commit(transaction: Transaction) {
+  async commit(transaction: TransactionRequest) {
     const res = await this.cluster.conn.post(`/${this.name}/transactions`, transaction);
     return res.data;
   }
