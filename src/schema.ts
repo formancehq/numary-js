@@ -6,17 +6,17 @@
  */
 
 export interface Transaction {
-  txid: number;
+  txid?: number;
   postings: {
     source: string;
     destination: string;
     amount: number;
     asset: string;
   }[];
-  reference: string;
-  timestamp: string;
-  hash: string;
-  metadata: {
+  reference?: string;
+  timestamp?: string;
+  hash?: string;
+  metadata?: {
     /**
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` ".*".
