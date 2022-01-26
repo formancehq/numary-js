@@ -46,7 +46,7 @@ class Ledger {
     return res.data;
   }
 
-  async commit(transaction: TransactionRequest) {
+  async commit(transaction: TransactionRequest) : Promise<Transaction> {
     const res = await this.cluster.conn.post(`/${this.name}/transactions`, transaction);
     return res.data;
   }
@@ -58,6 +58,14 @@ class Ledger {
     });
 
     return res.data;
+  }
+
+  async batch(transactions: TransactionRequest[]) : Promise<Transaction[]> {
+    const res = await this.cluster.conn.post(`/${this.name}/transactions/batch`, {
+      transactions,
+    });
+
+    return res.data.data;
   }
 }
 

@@ -42,14 +42,14 @@ export interface Account {
   address: string;
   contract: string;
   type?: string;
-  balances: {
+  balances?: {
     /**
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` ".*".
      */
     [k: string]: number;
   };
-  volumes: {
+  volumes?: {
     /**
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` ".*".
