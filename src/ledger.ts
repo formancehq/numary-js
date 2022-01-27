@@ -48,7 +48,7 @@ class Ledger {
 
   async commit(transaction: TransactionRequest) : Promise<Transaction> {
     const res = await this.cluster.conn.post(`/${this.name}/transactions`, transaction);
-    return res.data;
+    return res.data.data[0];
   }
 
   async execute(script: string, vars: object) : Promise<any> {

@@ -28,6 +28,28 @@ const ledger = cluster.getLedger('some-ledger');
 })();
 ```
 
+## Using Numary Cloud
+
+```typescript
+import Cluster from "numary";
+
+const cluster = new Cluster({
+  cloud: {
+    key: 'YOUR_API_KEY',
+  },
+});
+
+const ledger = cluster.getLedger('some-ledger');
+
+(async () => {
+  const r = await ledger.getTransactions();
+
+  for (const tx of r.data) {
+    console.log(tx);
+  }
+})();
+```
+
 ## Advanced options
 
 Axios interceptors can be used on the underlying cluster connection, e.g. to add authentication headers:
