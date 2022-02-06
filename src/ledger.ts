@@ -4,6 +4,11 @@ import Cursor from "./cursor";
 import { Transaction, TransactionRequest } from "./schema";
 import { TransactionQuery } from './query';
 
+interface Stats {
+  transactions: number;
+  accounts: number;
+}
+
 class Ledger {
   name: string;
   cluster: Cluster;
@@ -11,6 +16,11 @@ class Ledger {
   constructor(cluster : Cluster, name : string) {
     this.name = name;
     this.cluster = cluster;
+  }
+
+  async getStats() : Promise<Stats> {
+    const res = await this.cluster.conn.get(`/${this.name}/stats`);
+    return res.data.data;
   }
 
   async getAccounts() : Promise<Cursor<AccountSummary>> {
