@@ -1,6 +1,6 @@
 {
   "name": "numary",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
   "files": [
@@ -15,5 +15,10 @@
   },
   "scripts": {
     "build": "tsc"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.17",
+    "ts-node": "^10.5.0",
+    "typescript": "^4.5.5"
   }
 }
