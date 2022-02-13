@@ -23,8 +23,11 @@ class Ledger {
     return res.data.data;
   }
 
-  async getAccounts() : Promise<Cursor<AccountSummary>> {
-    const res = await this.cluster.conn.get(`/${this.name}/accounts`);
+  async getAccounts(query?: any) : Promise<Cursor<AccountSummary>> {
+    const res = await this.cluster.conn.get(`/${this.name}/accounts`, {
+      params: query,
+    });
+    
     return res.data.cursor;
   }
 

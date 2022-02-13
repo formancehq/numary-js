@@ -4,6 +4,11 @@ interface TransactionQuery {
   reference?: string,
 }
 
+interface AccountQuery {
+  after?: string,
+}
+
 export {
   TransactionQuery,
+  AccountQuery,
 }
