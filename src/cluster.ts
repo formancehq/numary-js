@@ -33,10 +33,10 @@ class Cluster {
     const res = await this.conn.get('/_info');
 
     return {
-      server: res.data["server"],
-      version: res.data["version"],
-      ledgers: res.data["ledgers"],
-      config: res.data["config"],
+      server: res.data.data["server"],
+      version: res.data.data["version"],
+      ledgers: res.data.data["config"]["storage"]["ledgers"],
+      config: res.data.data["config"],
     }
   }
 
