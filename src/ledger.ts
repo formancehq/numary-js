@@ -64,13 +64,40 @@ class Ledger {
     return res.data.data[0];
   }
 
-  async execute(script: string, vars: object) : Promise<any> {
+  async revert(txid: string) : Promise<object> {
+    const res = await this.cluster.conn.post(`/${this.name}/transactions/${txid}/revert`);
+    return res.data;
+  }
+
+  async execute(script: string, vars: object, preview?: boolean) : Promise<any> {
+    interface execParams {
+      preview? : string
+    }
+
+    const params : execParams = {};
+
+    if (preview) {
+      params['preview'] = '1';
+    }
+
     const res = await this.cluster.conn.post(`/${this.name}/script`, {
       plain: script,
       vars,
+    }, {
+      params,
     });
 
     return res.data;
+  }
+
+  async getMapping() : Promise<Object> {
+    const res = await this.cluster.conn.get(`/${this.name}/mapping`);
+    return res.data.data;
+  }
+
+  async setMapping(mapping: object) : Promise<object> {
+    const res = await this.cluster.conn.put(`/${this.name}/mapping`, mapping);
+    return res.data.data;
   }
 
   async batch(transactions: TransactionRequest[]) : Promise<Transaction[]> {
