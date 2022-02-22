@@ -9,6 +9,13 @@ interface Stats {
   accounts: number;
 }
 
+interface ScriptExecResult {
+  transaction?: Transaction;
+  error_code?: string;
+  error_message?: string;
+  details?: string;
+}
+
 class Ledger {
   name: string;
   cluster: Cluster;
@@ -69,7 +76,7 @@ class Ledger {
     return res.data;
   }
 
-  async execute(script: string, vars: object, preview?: boolean) : Promise<any> {
+  async execute(script: string, vars: object, preview?: boolean) : Promise<ScriptExecResult> {
     interface execParams {
       preview? : string
     }
