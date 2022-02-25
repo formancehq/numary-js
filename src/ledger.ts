@@ -71,9 +71,9 @@ class Ledger {
     return res.data.data[0];
   }
 
-  async revert(txid: string) : Promise<object> {
+  async revert(txid: string) : Promise<Transaction> {
     const res = await this.cluster.conn.post(`/${this.name}/transactions/${txid}/revert`);
-    return res.data;
+    return res.data.data;
   }
 
   async execute(script: string, vars: object, preview?: boolean) : Promise<ScriptExecResult> {
