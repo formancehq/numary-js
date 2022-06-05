@@ -15,7 +15,7 @@ class Cluster {
   constructor(opts: ClusterOpts) {
     let baseURL = opts.uri || "http://localhost:3068";
     
-    if (opts.cloud) {
+    if (opts.cloud && !opts.uri) {
       baseURL = 'https://api.numary.cloud/ledger';
     }
 
