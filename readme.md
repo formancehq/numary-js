@@ -34,7 +34,10 @@ const ledger = cluster.getLedger('some-ledger');
 import Cluster from "numary";
 
 const cluster = new Cluster({
+  // find your cloud endpoint at https://my.numary.cloud/organization
+  uri: 'https://your-cloud-endpoint.o.numary.cloud',
   cloud: {
+    // create an API key at https://my.numary.cloud/connectors
     key: 'YOUR_API_KEY',
   },
 });

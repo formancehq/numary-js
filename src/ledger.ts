@@ -76,22 +76,23 @@ class Ledger {
     return res.data.data;
   }
 
-  async execute(script: string, vars: object, preview?: boolean) : Promise<ScriptExecResult> {
-    interface execParams {
-      preview? : string
+  async execute(
+    script: string,
+    vars: object,
+    options?: {
+      preview?: boolean,
+      reference?: string,
+      metadata?: object,
     }
-
-    const params : execParams = {};
-
-    if (preview) {
-      params['preview'] = '1';
-    }
-
+  ) : Promise<ScriptExecResult> {
     const res = await this.cluster.conn.post(`/${this.name}/script`, {
       plain: script,
       vars,
+      ...options,
     }, {
-      params,
+      params: {
+        preview: options?.preview,
+      },
     });
 
     return res.data;

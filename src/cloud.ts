@@ -2,6 +2,7 @@ import axios, { AxiosRequestConfig } from "axios";
 
 export interface CloudOpts {
   key?: string;
+  sandbox?: boolean;
 }
 
 export function Cloud(opts: CloudOpts) {
@@ -20,7 +21,7 @@ export function Cloud(opts: CloudOpts) {
       return;
     }
 
-    const res = await axios.post('https://api.numary.cloud/auth/authenticate/tokens', {
+    const res = await axios.post(`https://api${opts.sandbox ? '.staging' : ''}.numary.cloud/auth/authenticate/tokens`, {
       strategy: 'm2m',
       token: opts.key,
     });
