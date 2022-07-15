@@ -1,6 +1,6 @@
-# Numary Typescript SDK
+# Formance Typescript SDK
 
-This repository contains the Numary Typescript SDK for Node.js, generated from `numary/ledger` types.
+This repository contains the Formance (fka Numary) Typescript SDK for Node.js, generated from `numary/ledger` types.
 
 ## Installation
 
