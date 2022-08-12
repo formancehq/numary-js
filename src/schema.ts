@@ -10,7 +10,7 @@ export interface Transaction {
   postings: {
     source: string;
     destination: string;
-    amount: number;
+    amount: number | bigint;
     asset: string;
   }[];
   reference: string;
@@ -30,7 +30,7 @@ export interface TransactionRequest {
   postings: {
     source: string;
     destination: string;
-    amount: number;
+    amount: number | bigint;
     asset: string;
   }[];
   reference?: string;

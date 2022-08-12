@@ -1,6 +1,6 @@
 # Formance Typescript SDK
 
-This repository contains the Formance (fka Numary) Typescript SDK for Node.js, generated from `numary/ledger` types.
+This repository contains the Formance (fka Numary) Typescript SDK for NodeJS.
 
 ## Installation
 
@@ -28,7 +28,7 @@ const ledger = cluster.getLedger('some-ledger');
 })();
 ```
 
-## Using Numary Cloud
+## Using Formance Cloud
 
 ```typescript
 import Cluster from "numary";
@@ -49,6 +49,40 @@ const ledger = cluster.getLedger('some-ledger');
 
   for (const tx of r.data) {
     console.log(tx);
+  }
+})();
+```
+
+## Using `bigint` numbers
+
+This SDK uses `json-bigint` under the hood to parse and encode requests; with transactions postings amount accepting and returning either a `number` or a `bigint` type depending on the integer size.
+
+```typescript
+(async () => {
+ await ledger.commit({
+    postings: [
+      {
+        source: 'world',
+        destination: 'deposits',
+        amount: 1234123412341234123412341234123412341234123412341234123412341234123412341234n,
+        asset: 'USD/2',
+      },
+      {
+        source: 'world',
+        destination: 'deposits',
+        amount: 100,
+        asset: 'USD/2',
+      }
+    ],
+  });
+
+  const res = await ledger.getTransactions();
+
+  for (const posting of res.data[0].postings) {
+    console.log(`${typeof posting.amount}: ${posting.amount}`);
+    // will print:
+    // bigint: 1234123412341234123412341234123412341234123412341234123412341234123412341234
+    // number: 100
   }
 })();
 ```

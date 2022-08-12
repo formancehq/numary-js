@@ -1,7 +1,8 @@
-import axios, { AxiosBasicCredentials, AxiosInstance } from "axios";
+import axios, { AxiosBasicCredentials, AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { Cloud, CloudOpts } from "./cloud";
 import { Info } from "./info";
 import Ledger from "./ledger";
+import jsonbig from "json-bigint";
 
 interface ClusterOpts {
   uri?: string;
@@ -27,6 +28,23 @@ class Cluster {
     if (opts.cloud) {
       this.conn.interceptors.request.use(Cloud(opts.cloud));
     }
+
+    const json = jsonbig({
+      useNativeBigInt: true,
+    });
+
+    this.conn.interceptors.request.use((req: AxiosRequestConfig) : AxiosRequestConfig => {
+      req.data = json.stringify(req.data);
+
+      req.transformResponse = data => data;
+
+      return req;
+    });
+
+    this.conn.interceptors.response.use((res : AxiosResponse) : AxiosResponse => {
+      res.data = json.parse(res.data);
+      return res;
+    });
   }
 
   async getInfo() : Promise<Info> {
