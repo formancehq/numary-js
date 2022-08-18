@@ -2,7 +2,7 @@ import { Account, AccountSummary } from "./account";
 import Cluster from "./cluster";
 import Cursor from "./cursor";
 import { Transaction, TransactionRequest } from "./schema";
-import { TransactionQuery } from './query';
+import { PaginatedQuery, TransactionQuery } from './query';
 
 interface Stats {
   transactions: number;
@@ -30,7 +30,9 @@ class Ledger {
     return res.data.data;
   }
 
-  async getAccounts(query?: any) : Promise<Cursor<AccountSummary>> {
+  async getAccounts(query?: any | {
+    [key: string]: any,
+  } & PaginatedQuery) : Promise<Cursor<AccountSummary>> {
     const res = await this.cluster.conn.get(`/${this.name}/accounts`, {
       params: query,
     });
@@ -54,6 +56,30 @@ class Ledger {
     });
 
     return res.data.cursor;
+  }
+
+  async getBalances(query?: {
+    address?: string,
+    [key: string]: any,
+  } & PaginatedQuery) : Promise<Cursor<any>> {
+    const res = await this.cluster.conn.get(`/${this.name}/balances`, {
+      params: query,
+    });
+
+    return res.data.cursor;
+  }
+
+  async aggregateBalances(query?: {
+    address?: string,
+    [key: string]: any,
+  }) : Promise<{
+    [asset: string]: number,
+  }> {
+    const res = await this.cluster.conn.get(`/${this.name}/aggregate/balances`, {
+      params: query,
+    });
+
+    return res.data.data;
   }
 
   async setTransactionMeta(txid: string, meta: object) {
