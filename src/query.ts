@@ -14,7 +14,7 @@ interface TransactionQuery extends PaginatedQuery {
   [key: string]: any,
 }
 
-interface AccountQuery {
+interface AccountsQuery extends PaginatedQuery {
   address?: string,
   balance?: number,
   balance_operator?: string,
@@ -23,6 +23,6 @@ interface AccountQuery {
 
 export {
   TransactionQuery,
-  AccountQuery,
+  AccountsQuery,
   PaginatedQuery,
 }

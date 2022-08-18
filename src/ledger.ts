@@ -2,7 +2,7 @@ import { Account, AccountSummary } from "./account";
 import Cluster from "./cluster";
 import Cursor from "./cursor";
 import { Transaction, TransactionRequest } from "./schema";
-import { PaginatedQuery, TransactionQuery } from './query';
+import { AccountsQuery, PaginatedQuery, TransactionQuery } from './query';
 
 interface Stats {
   transactions: number;
@@ -30,9 +30,7 @@ class Ledger {
     return res.data.data;
   }
 
-  async getAccounts(query?: any | {
-    [key: string]: any,
-  } & PaginatedQuery) : Promise<Cursor<AccountSummary>> {
+  async getAccounts(query?: AccountsQuery) : Promise<Cursor<AccountSummary>> {
     const res = await this.cluster.conn.get(`/${this.name}/accounts`, {
       params: query,
     });
