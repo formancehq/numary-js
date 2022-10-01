@@ -7,6 +7,7 @@ interface ClusterOpts {
   uri?: string;
   auth?: AxiosBasicCredentials;
   cloud?: CloudOpts;
+  axiosLibrary?: typeof axios;
 }
 
 class Cluster {
@@ -19,7 +20,7 @@ class Cluster {
       baseURL = 'https://api.numary.cloud/ledger';
     }
 
-    this.conn = axios.create({
+    this.conn = (opts?.axiosLibrary ?? axios).create({
       baseURL,
       auth: opts.auth,
     });
