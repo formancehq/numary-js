@@ -1,6 +1,6 @@
 # Formance Typescript SDK
 
-This repository contains the Formance (fka Numary) Typescript SDK for Node.js, generated from `numary/ledger` types.
+This repository contains the Typescript SDK for Formance Ledger (fka Numary) for Node.js, wrapping the automatic [generated](https://www.npmjs.com/package/@numaryhq/ledger-nodejs) API client with higher-level functionality.
 
 ## Installation
 
@@ -28,30 +28,9 @@ const ledger = cluster.getLedger('some-ledger');
 })();
 ```
 
-## Using Numary Cloud
+## Using Formance Cloud
 
-```typescript
-import Cluster from "numary";
-
-const cluster = new Cluster({
-  // find your cloud endpoint at https://my.numary.cloud/organization
-  uri: 'https://your-cloud-endpoint.o.numary.cloud',
-  cloud: {
-    // create an API key at https://my.numary.cloud/connectors
-    key: 'YOUR_API_KEY',
-  },
-});
-
-const ledger = cluster.getLedger('some-ledger');
-
-(async () => {
-  const r = await ledger.getTransactions();
-
-  for (const tx of r.data) {
-    console.log(tx);
-  }
-})();
-```
+Moved to [@formancehq/formance](https://www.npmjs.com/package/@formancehq/formance)
 
 ## Advanced options
 

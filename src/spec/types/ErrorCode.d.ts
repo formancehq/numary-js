@@ -1,0 +1,1 @@
+export type ErrorCode = "INTERNAL" | "INSUFFICIENT_FUND" | "VALIDATION" | "CONFLICT";

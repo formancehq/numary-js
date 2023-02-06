@@ -10,8 +10,11 @@
   "author": "Clément Salaün <salaun.clement@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@numaryhq/ledger-nodejs": "^1.8.1",
+    "@types/yaml": "^1.9.7",
     "axios": "^0.21.1",
-    "json-schema-to-typescript": "^10.1.4"
+    "json-schema-to-typescript": "^10.1.4",
+    "yaml": "^2.2.1"
   },
   "scripts": {
     "build": "tsc"

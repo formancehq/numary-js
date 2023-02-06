@@ -1,20 +1,14 @@
 import { Account, AccountSummary } from "./account";
 import Cluster from "./cluster";
 import Cursor from "./cursor";
-import { Transaction, TransactionRequest } from "./schema";
+import { Transaction, TransactionRequest } from "./transaction";
 import { AccountsQuery, PaginatedQuery, TransactionQuery } from './query';
+import { Stats as BaseStats } from "./spec/types/Stats";
+import { ScriptResult as BaseScriptExecResult } from "./spec/types/ScriptResult";
+import { Metadata } from "./spec/types/Metadata";
 
-interface Stats {
-  transactions: number;
-  accounts: number;
-}
-
-interface ScriptExecResult {
-  transaction?: Transaction;
-  error_code?: string;
-  error_message?: string;
-  details?: string;
-}
+interface Stats extends BaseStats {}
+interface ScriptExecResult extends BaseScriptExecResult {}
 
 class Ledger {
   name: string;
@@ -106,7 +100,7 @@ class Ledger {
     options?: {
       preview?: boolean,
       reference?: string,
-      metadata?: object,
+      metadata?: Metadata,
     }
   ) : Promise<ScriptExecResult> {
     const res = await this.cluster.conn.post(`/${this.name}/script`, {
