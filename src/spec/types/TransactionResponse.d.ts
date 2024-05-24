@@ -2,7 +2,7 @@ export interface TransactionResponse {
   data: {
     timestamp: string;
     postings: {
-      amount: number;
+      amount: number | bigint;
       asset: string;
       destination: string;
       source: string;
@@ -14,9 +14,9 @@ export interface TransactionResponse {
     preCommitVolumes?: {
       [k: string]: {
         [k: string]: {
-          input: number;
-          output: number;
-          balance?: number;
+          input: number | bigint;
+          output: number | bigint;
+          balance?: number | bigint;
           [k: string]: unknown;
         };
       };
@@ -24,9 +24,9 @@ export interface TransactionResponse {
     postCommitVolumes?: {
       [k: string]: {
         [k: string]: {
-          input: number;
-          output: number;
-          balance?: number;
+          input: number | bigint;
+          output: number | bigint;
+          balance?: number | bigint;
           [k: string]: unknown;
         };
       };

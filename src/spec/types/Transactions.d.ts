@@ -5,7 +5,7 @@ export interface Transactions {
 export interface TransactionData {
   timestamp?: string;
   postings: {
-    amount: number;
+    amount: number | bigint;
     asset: string;
     destination: string;
     source: string;
