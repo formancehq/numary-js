@@ -11,8 +11,11 @@
   "license": "MIT",
   "dependencies": {
     "@numaryhq/ledger-nodejs": "^1.8.1",
+    "@types/axios": "^0.14.0",
+    "@types/json-bigint": "^1.0.4",
     "@types/yaml": "^1.9.7",
     "axios": "^0.21.1",
+    "json-bigint": "^1.0.0",
     "json-schema-to-typescript": "^10.1.4",
     "yaml": "^2.2.1"
   },
